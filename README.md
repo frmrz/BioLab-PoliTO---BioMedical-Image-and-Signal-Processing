@@ -7,9 +7,15 @@ You can also find useful material for that specific task (papers, tutorials, lin
 
 Open Challenges related to this task should also have their specific section.
 
-Topics:
+## Table of Contents
 
-  - [] Image Segmentation
+:tv: Image Processing 
+
+:o:  Segmentation:o:  Classification :o:  Domain Transfer :o:  Generation
+
+🔊 Signal Processing
+
+:o: Classification :o: Generation
 
 
 
