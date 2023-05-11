@@ -9,13 +9,17 @@ Open Challenges related to this task should also have their specific section.
 
 ## Table of Contents
 
-:tv: Image Processing 
+:tv: Image Processing  
 
-:o:  Segmentation:o:  Classification :o:  Domain Transfer :o:  Generation
+:o:  Segmentation  
+:o:  Classification  
+:o:  Domain Transfer  
+:o:  Generation  
 
-🔊 Signal Processing
+🔊 Signal Processing  
 
-:o: Classification :o: Generation
+:o: Classification  
+:o: Generation  
 
 
 
