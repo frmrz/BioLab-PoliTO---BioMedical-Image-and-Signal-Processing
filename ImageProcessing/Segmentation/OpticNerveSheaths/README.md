@@ -1,6 +1,6 @@
 ## Development of a Deep Learning-based system for Optic Nerve characterization in Transorbital Ultrasound Images on a multicenter dataset  
 
-Official repository for the reproduction of the results presented in the article (<a href="https://doi.org/10.1016/j.ultrasmedbio.2023.05.011">Paper</a>). A smaller version of this work was presented at IUS 2021 (<a href="https://ieeexplore.ieee.org/document/9593827">IUS 2021</a>). Data, checkpoints of the trained models, and results have been shared using the Mendeley platform and are available at (<a href="10.17632/kw8gvp8m8x.1">Dataset</a>).
+Official repository for the reproduction of the results presented in the article (<a href="https://doi.org/10.1016/j.ultrasmedbio.2023.05.011">Paper</a>). A smaller version of this work was presented at IUS 2021 (<a href="https://ieeexplore.ieee.org/document/9593827">IUS 2021</a>). Data, checkpoints of the trained models, and results have been shared using the Mendeley platform and are available at (<a href="https://data.mendeley.com/datasets/kw8gvp8m8x">Dataset</a>).
 
 Development and training of the DL model have been coded using the awesome <a href="https://github.com/qubvel/segmentation_models.pytorch">Segmentation Models Pytorch</a> library.
 
