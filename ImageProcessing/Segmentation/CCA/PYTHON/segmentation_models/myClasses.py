@@ -50,23 +50,10 @@ class Dataset(BaseDataset):
     
     def __getitem__(self, i):
         
-        # print(self.images_fps[i])
-        # read data
-        # image = Image.open(self.images_fps[i])
-        # image = image.resize((512,512),Image.BICUBIC)
-        # image = np.asarray(image)
         image = cv2.imread(self.images_fps[i])
-        # image = cv2.resize(image, (512,512), interpolation = cv2.INTER_AREA)
-        
-        # mask = Image.open(self.masks_fps[i].replace('.tiff', '.png'))
-        # mask = mask.resize((512,512),Image.BICUBIC)
-        # mask = np.asarray(mask)
-        # mask = cv2.imread(self.masks_fps[i].replace('.tiff', '.png'), 0)
         mask = cv2.imread(self.masks_fps[i], 0)
-        # mask = cv2.resize(mask, (512,512), interpolation = cv2.INTER_AREA)
 
         # extract certain classes from mask (e.g. cars)
-        # masks = [(mask == v) for v in self.class_values]
         masks = [(mask == v) for v in [255]]
         mask = np.stack(masks, axis=-1).astype('float')
         
@@ -123,15 +110,7 @@ class Dataset_test(BaseDataset):
     def __getitem__(self, i):
         
         # read data
-        # image = Image.open(self.images_fps[i])
-        # image = image.resize((512,512),Image.BICUBIC)
-        # image = np.asarray(image)
         image = cv2.imread(self.images_fps[i])
-        # image = cv2.resize(image, (512,512), interpolation = cv2.INTER_AREA)
-
-        # mask = Image.open(self.masks_fps[i].replace('.tiff', '.png'))
-        # mask = mask.resize((512,512),Image.BICUBIC)
-        # mask = np.asarray(mask)
         mask = cv2.imread(self.masks_fps[i], 0)
         # mask = cv2.resize(mask, (512,512), interpolation = cv2.INTER_AREA)
 
