@@ -1,3 +1,18 @@
+% FILEPATH: /media/francesco/DEV001/CENTRAL_PROJECTS_REPOSITORY/BioLab-PoliTO---BioMedical-Image-and-Signal-Processing/ImageProcessing/Segmentation/OpticNerveSheaths/MATLAB/SNRanalysis.m
+
+% This script calculates the Signal-to-Noise Ratio (SNR) in ultrasound (US) images of the optic nerve. It also calculates the Dice scores and Hausdorff distances for the segmented optic nerve regions. The script loops through a set of images and performs the following steps:
+% 1. Load the images, labels, and background images.
+% 2. Extract the regions of interest (sheets, optic nerve, and background) from the images.
+% 3. Calculate the SNR parameters for the left and right regions.
+% 4. Calculate the Dice scores and Hausdorff distances for the segmented optic nerve regions.
+% 5. Discretize the SNR values and analyze the differences in Dice scores and Hausdorff distances.
+
+% The script uses various functions such as imread, bwconvhull, regionprops, extractLBPFeatures, dice, imhausdorff, and kruskalwallis.
+
+% Note: Some code sections are commented out and can be uncommented to visualize intermediate results or save figures.
+
+% Author: Francesco Marzola
+
 close all
 clear
 
