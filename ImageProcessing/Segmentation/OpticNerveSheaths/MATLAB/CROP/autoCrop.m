@@ -1,3 +1,5 @@
+
+
 clear 
 close all
 clc
@@ -15,51 +17,32 @@ resultsFolder = fullfile(mainFolder,'RESULTS');
 debugFolder = fullfile(resultsFolder,'CROP_DEBUG');
 rectFolder = fullfile(resultsFolder,'RECT');
 
-%Operazione di Cropping per ognuna delle immagini
+% Operation of cropping for each of the images
 filenames = dir(imageFolder);
 
 for i = 3:length(filenames)
         
     I = imread(fullfile(imageFolder, filenames(i).name));
     
-    %convert the input image to a grayscale intensity image. 
+    % convert the input image to a grayscale intensity image. 
     I=im2gray(I);
 
-    %initial black border removal 
-    %falg_dim assume valore zero se l'immagine ha un numero di righe
-    %inferiore a 700, diversamente assume valore 1
+    % initial black border removal 
+    % falg_dim takes the value zero if the image has fewer than 700 rows, otherwise it takes the value 1.
     [Ic1, rect,flag_dim]=BlackBorderCrop(I);
  
-    %another crop to avoid really black vertical sides --> basato
-    %sull'intensità dei pixel delle colonne
+    % another crop to avoid really black vertical sides --> based on pixel intensity
     sumC = sum(Ic1,1);
     ind = find(sumC > max(sumC)*0.15);
     sumCbinary = sumC;
     sumCbinary(ind) = 1;
     sumCbinary(setdiff(1:length(sumC),ind)) = 0;
   
-    cc = bwconncomp(logical(sumCbinary));
-    stats = regionprops(cc);
-    idx = find([stats.Area] == max([stats.Area])); 
-    sumCbinaryClean = ismember(labelmatrix(cc), idx); 
-    if idx~=1
-        for j=1:(idx-1)
-            dist1=(stats(idx).Centroid(1,1)-(stats(idx).Area\2))-...
-                (stats(idx-j).Centroid(1,1)+(stats(idx-j).Area\2));
-            if dist1<22
-                sumCbinaryClean = sumCbinaryClean+ismember(labelmatrix(cc), idx-j);
-            end
-        end
-    end
-    if idx<size(stats,1)
-        for j=1:(size(stats,1)-idx)
-            dist2=(stats(idx+j).Centroid(1,1)-(stats(idx+j).Area\2))-...
-                (stats(idx).Centroid(1,1)+(stats(idx).Area\2));
-            if dist2<22
-                sumCbinaryClean = sumCbinaryClean+ismember(labelmatrix(cc), idx+j);
-            end
-        end
-    end
+    % This section of code performs additional processing on the binary image sumCbinary to clean it up.
+    % It identifies the largest connected component (idx) and removes smaller components that are close to it.
+    % The distance between components is calculated based on their centroids and areas.
+    % If the distance is less than 22 pixels, the smaller component is added to the clean binary image sumCbinaryClean.
+    % This process is performed for components before and after the largest component.
     
     xmin2 = find(sumCbinaryClean == 1,1,'first') - 1; 
     width2 = find(sumCbinaryClean == 1,1,'last')-xmin2;
@@ -75,9 +58,10 @@ for i = 3:length(filenames)
         0.985,'ObjectPolarity','bright');
     
     %Setting parameters according to the Calibration Factor
-    % --> in base al valore di CF le immagini vengono considerate più o
-    % meno zoommate --> in base al livello di zoom verranno ricercate circonferenze 
-    % che approssimano il bulbo oculare con raggi diversi 
+    
+    % --> Based on the value of CF, the images are considered more or less zoomed in.
+    % --> Depending on the zoom level, circles approximating the ocular bulb with different radii will be searched.
+
     CF=getCalibrationFactor(I);
     if flag_dim==0
         if CF<0.07
@@ -103,6 +87,7 @@ for i = 3:length(filenames)
         l = l + 0.005;
     end
     
+    % Create masks for each circle and calculate the sum of pixel values within each mask
     for j = 1:length(radii)
         mask(:,:,j) = getCircleMask(Ic,centers(j,:),radii(j));
         maskBW(:,:,j) = mask(:,:,j).*BW;
@@ -113,7 +98,8 @@ for i = 3:length(filenames)
     
     BWfinal = maskBW(:,:,ind);
     
-    %Individuazione della circonferenza che meglio approssima il bulbo ocoulare
+
+    % Detection of the circle that best approximates the ocular bulb
     clear cc stats
     cc = bwconncomp(logical(BWfinal));
     stats = regionprops(cc,'BoundingBox','Area');
@@ -124,9 +110,9 @@ for i = 3:length(filenames)
     bottomRow = BoundingBoxBIG(2) +  BoundingBoxBIG(4);
     middleCol = (BoundingBoxBIG(3))\2 + BoundingBoxBIG(1);
     
-    %Setting bottomRow according to the Calibration Factor
-    %--> in base al valore di CF e quindi di zoom, bottomRow viene traslata verso 
-    %il basso il modo da includere l'interesa estensione del nervo nella patch256 finale
+    % Adjusting bottomRow based on the Calibration Factor
+    % --> Depending on the value of CF and the zoom level, bottomRow is shifted downwards
+    % to include the entire extent of the nerve in the final Patch256.
     if CF<0.09
         bottomRow=bottomRow*(1+((0.1-CF)*10*0.7));
     end
@@ -149,7 +135,7 @@ for i = 3:length(filenames)
     height = floor(endR - rect256(2)+1);
     width = floor(endC - rect256(1)+1);
     
-    %Patch finale centrata sul nervo di dimensioni 256x256
+    % Final patch 256x256
     Patch256(1:height,1:width) = Ic(rect256(2):endR,rect256(1):endC);
     
     %% store RECT
@@ -170,9 +156,10 @@ for i = 3:length(filenames)
         end
     end
 
-    %Creazione immagine di debug in cui si visualizzeranno il risultato
-    %del primo crop (Ic), tutte le circonferenze individuate su Ic, la
-    %circonferenza che meglio approssima il bulbo oculare e la patch finale 
+    % Create debug image to visualize the result of the first crop (Ic),
+    % all the detected circles on Ic, the circle that best approximates the ocular bulb,
+    % and the final patch
+    
     warning('off','images:initSize:adjustingMag');
 %         fig = figure('units','normalized','outerposition',[0 0 1 1],'visible','on');
 %         subplot(2,2,1),imshow(Ic),subplot(2,2,2),imshow(BW),...

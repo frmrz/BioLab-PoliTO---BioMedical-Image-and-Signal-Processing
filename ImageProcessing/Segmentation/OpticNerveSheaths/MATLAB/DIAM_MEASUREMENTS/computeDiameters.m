@@ -4,8 +4,7 @@ clc
 
 mainFolder =  '/media/francesco/DEV001/PROJECT-GITHUB/Image_Processing/Segmentation/Ultrasound-OpticNerveSheaths';
 
-%% folders
-
+% --- DIRECTORIES SETUP ---
 dataFolder = fullfile(mainFolder,'DATA');
 resultsFolder = fullfile(mainFolder,'RESULTS');
 
@@ -20,16 +19,19 @@ cfFolder = fullfile(dataFolder,'CF');
 diametersFolder=fullfile(resultsFolder,'DIAMETERS');
 debugFolder = fullfile(resultsFolder,'DEBUG');
 
+% Image filenames
 filenames = dir(imageFolder);
 
-%% loop
-for ii = 3 : length(filenames)
-    sprintf('i = %i', ii)
+% --- PROCESSING LOOP ---
+for ii = 3:length(filenames)
+    fprintf('Processing image %i\n', ii);
 
+    % Reading ground truth, image, and prediction
     GT = imread(fullfile(masksFolder,filenames(ii).name)) == 1;
     I = imread(fullfile(imageFolder,filenames(ii).name));
     pred = imread(fullfile(outputFolder,filenames(ii).name));
 
+    % Load calibration factor and bulb distance
     CF = load(fullfile(cfFolder,strrep(filenames(ii).name,'.png','.txt')));
     BulbDist = load(fullfile(bulbDistanceFolder,strrep(filenames(ii).name,'.png','.txt')));
            
@@ -60,6 +62,7 @@ for ii = 3 : length(filenames)
      % --> top/bottom Right of first object and top/bottom Left of second one
     %Structure of the property "Extrema":
      % --> [top-left top-right right-top right-bottom bottom-right bottom-left left-bottom left-top]
+     
     topL = stats(2).Extrema(1,:);
     bottomL = stats(2).Extrema(6,:);
     topR = stats(1).Extrema(2,:);
@@ -80,10 +83,10 @@ for ii = 3 : length(filenames)
     BWnerve(1:lowestHighPoint,:) = 0;
     BWnerve(highestLowPoint:end,:) = 0;
 
-    %Start creating debug image --> figure with 4 images --> The first one is the nerve mask
-%     warning('off','images:initSize:adjustingMag');
-%     fig = figure('visible','on');
-%     subplot(2,2,1), imshow(BWnerve)
+    % Start creating debug image --> figure with 4 images --> The first one is the nerve mask
+    %     warning('off','images:initSize:adjustingMag');
+    %     fig = figure('visible','on');
+    %     subplot(2,2,1), imshow(BWnerve)
         
     %% -----CREATING THE CENTERLINE-----
 
@@ -92,6 +95,7 @@ for ii = 3 : length(filenames)
     %loop that runs all (and only) the length of the nerve
 
     for kk = lowestHighPoint:highestLowPoint
+
         %saving of the extreme left and right points of the nerve, respectively in first and last
         first = find(BWnerve(kk,:) == 1,1,'first');
         last = find(BWnerve(kk,:) == 1,1,'last');
@@ -119,12 +123,12 @@ for ii = 3 : length(filenames)
     idx_skel = find([stats_skel.Area] == max([stats_skel.Area])); 
     skel = ismember(labelmatrix(cc_skel),idx_skel);  
         
-    %Continues the construction of the debug figure --> the secon image is the centerline mask
-%     subplot(2,2,2), imshow(skel+BW)
+    % Continues the construction of the debug figure --> the secon image is the centerline mask
+    %     subplot(2,2,2), imshow(skel+BW)
 
-    %Centerline approximated to a line
+    % Centerline approximated to a line
     f1 = fit(centerline([1 2:20:end-1 end],2),centerline([1 2:20:end-1 end],1),'poly1');
-    %Coefficients of the straight line containing the centerline
+    % Coefficients of the straight line containing the centerline
     a = f1.p1;
     b = f1.p2;
 
@@ -136,12 +140,12 @@ for ii = 3 : length(filenames)
 
     ind = find(xx>0 & xx<256);
 
-    %Coordinates of the points that make up the straight line containing the centerline
+    % Coordinates of the points that make up the straight line containing the centerline
     xx = xx(ind);
     yy = yy(ind);
 
     %% -----SEARCH FOR THE BOTTOM OF THE EYEBALL-----
-    %Get some of the extrema points of the objects:
+    % Get some of the extrema points of the objects:
      % --> top/bottom Left of first object and top/bottom Right of second one
     topL = stats(1).Extrema(1,:);
     bottomL = stats(1).Extrema(6,:);
