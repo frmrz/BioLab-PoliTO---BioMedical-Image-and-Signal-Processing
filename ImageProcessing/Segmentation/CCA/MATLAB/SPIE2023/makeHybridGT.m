@@ -10,7 +10,6 @@ imgDir = fullfile(mainDir,"IMAGES");
 A1Dir = fullfile(mainDir,"MASKS-A1");
 A1sDir = fullfile(mainDir,"MASKS-A1s");
 TUMDir = fullfile(mainDir,"MASKS-TUM");
-% HDir = fullfile(mainDir,"MASKS-HYBRID");
 HDir = fullfile(mainDir,"MASKS-HYBRID-v1");
 
 CFDir = fullfile(mainDir,"CF");
