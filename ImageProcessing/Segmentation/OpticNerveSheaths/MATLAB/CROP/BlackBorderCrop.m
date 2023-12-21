@@ -1,7 +1,7 @@
 function [Ic,rect,flag] = BlackBorderCrop(I)
 %
 % This function is developed for the automatic cropping of ultrasound.
-% Versione modificata di una funzione del Professore Filippo Molinari 
+% Authors: Filippo Molinari, Kristen Meiburger, Francesco Marzola
 %
 % Inputs:  I = input image to be cropped
 %
