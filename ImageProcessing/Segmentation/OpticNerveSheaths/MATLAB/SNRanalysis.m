@@ -228,7 +228,7 @@ bins = {'Low','Average','High'};
 
 SNRcategoryLeft = discretize(SNRcategoryLeft(:,1), ...
     [-inf,mean(SNRcategoryLeft(:,1))-std(SNRcategoryLeft(:,1)),mean(SNRcategoryLeft(:,1))+std(SNRcategoryLeft(:,1)),+inf],...
-    'categorical',bins);
+    'categorical',bins); %#ok<*NASGU>
 
 SNRcategoryRight = discretize(SNRcategoryRight(:,1), ...
     [-inf,mean(SNRcategoryRight(:,1))-std(SNRcategoryRight(:,1)),mean(SNRcategoryRight(:,1))+std(SNRcategoryRight(:,1)),+inf],...
@@ -479,7 +479,7 @@ function [summary] = calcSNRparams(ms,mnIN,mnOUT)
     if length(ms) > length(mnIN)
         sample = randi(length(ms),1,length(mnIN));
         ms = ms(sample);
-        else if length(ms) > length(mnOUT)
+        else if length(ms) > length(mnOUT) %#ok<SEPEX,ALIGN>
             sample = randi(length(ms),1,length(mnOUT));
             ms = ms(sample);
         end
