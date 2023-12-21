@@ -11,7 +11,7 @@ Open Challenges related to this task should also have their specific section.
 
 :tv: Image Processing  
 
-:o:  Segmentation : 🆕 Optic Nerve  
+:o:  Segmentation : :green_circle: Optic Nerve  
 :o:  Classification  
 :o:  Domain Transfer  
 :o:  Generation  
