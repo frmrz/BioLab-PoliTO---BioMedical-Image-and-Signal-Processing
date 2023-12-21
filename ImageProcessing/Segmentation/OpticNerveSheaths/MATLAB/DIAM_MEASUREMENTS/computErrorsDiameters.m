@@ -1,3 +1,9 @@
+% FILEPATH: /media/francesco/DEV001/CENTRAL_PROJECTS_REPOSITORY/BioLab-PoliTO---BioMedical-Image-and-Signal-Processing/ImageProcessing/Segmentation/OpticNerveSheaths/MATLAB/DIAM_MEASUREMENTS/computErrorsDiameters.m
+
+% This script loads an Excel file containing computed diameters and performs statistical analysis on the data. 
+% It divides the data into subsets based on different machines used for measurement and calculates various statistics for each subset. 
+% The results are then formatted and written to an Excel file.
+
 close all
 clear
 
