@@ -1,3 +1,25 @@
+% FILEPATH: /media/francesco/DEV001/CENTRAL_PROJECTS_REPOSITORY/BioLab-PoliTO---BioMedical-Image-and-Signal-Processing/ImageProcessing/Segmentation/CCA/SPIE23/MATLAB/makeHybridGT.m
+
+% This script is used to create a hybrid ground truth (GT) for image segmentation.
+% It takes multiple input images and corresponding masks, and generates a hybrid GT mask
+% by combining the information from different masks based on certain conditions.
+
+% The script follows the following steps:
+% 1. Set up the directories for input images and masks.
+% 2. Load the files in the directories.
+% 3. Loop through each file.
+% 4. Load the image and masks for the current file.
+% 5. Calculate various metrics and quality factors for the masks.
+% 6. Determine the appropriate profiles to use for creating the hybrid GT.
+% 7. Generate the hybrid GT mask by combining the selected profiles.
+% 8. Repeat the process for all files.
+
+% Note: The script contains commented out code for plotting and exporting figures.
+
+% This script is part of a larger project for biomedical image and signal processing.
+
+% Author: [Author Name]
+% Date: [Date]
 close all
 clear
 
@@ -372,18 +394,3 @@ p10CVma = prctile(CVma,10);
 % 
 % subplot(325),histogram(cvLItum1),title('CV LI t1');
 % subplot(326),histogram(cvMAtum1),title('CV MA t1');
-
-
-function output1 = SlideFun(x,WindowLength)
-
-    output1 = zeros(length(x)-WindowLength,1);
-%     output2 = zeros(length(x)-WindowLength,1);
-    
-    for idx = 1:length(x)-WindowLength
-        Block = x(idx:idx+WindowLength);
-        output1(idx) = std(Block)/mean(Block);
-%         output2(idx) = fun(Block);
-    end
-
-end
-

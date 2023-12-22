@@ -11,21 +11,15 @@ import tempfile
 
 import matplotlib.pyplot as plt
 import numpy as np
-# from tqdm import tqdm
 import torch 
-# import skimage
-# import cv2
 
-# from monai.losses import DiceCELoss
 from monai.inferers import sliding_window_inference
 from monai.transforms import (
     AsDiscrete,
-    # DataStatsd,
     AddChanneld,
     Compose,
     LoadImaged,
     Transposed,
-    # EnsureChannelFirstd,
     ToTensord,
     RepeatChanneld,
     ScaleIntensityRanged,
@@ -36,7 +30,6 @@ from monai.transforms import (
 
 from monai.config import print_config
 from monai.metrics import DiceMetric
-# from monai.networks.nets import UNETR
 
 from monai.data import (
     DataLoader,
