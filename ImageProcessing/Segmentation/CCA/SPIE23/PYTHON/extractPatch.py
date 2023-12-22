@@ -1,3 +1,21 @@
+"""
+This script extracts patches from medical images and saves them as separate files.
+It uses the MONAI library for data loading, preprocessing, and patch extraction.
+
+The script performs the following steps:
+1. Imports necessary libraries and modules.
+2. Sets the random seed for reproducibility.
+3. Defines the directory where the data is located.
+4. Defines the transformations to be applied to the training and validation datasets.
+5. Loads the dataset split information from a JSON file.
+6. Creates the training and validation datasets using the MONAI CacheDataset class.
+7. Creates the data loaders for training and validation.
+8. Defines the output directories for saving the extracted patches.
+9. Iterates over the training dataset, extracts patches, and saves them as separate image and label files.
+10. Iterates over the validation dataset, extracts patches, and saves them as separate image and label files.
+"""
+
+# Rest of the code...
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """

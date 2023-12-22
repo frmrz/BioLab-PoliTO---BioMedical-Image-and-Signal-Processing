@@ -1,3 +1,34 @@
+% FILEPATH: /media/francesco/DEV001/CENTRAL_PROJECTS_REPOSITORY/BioLab-PoliTO---BioMedical-Image-and-Signal-Processing/ImageProcessing/Segmentation/CCA/SPIE23/MATLAB/km_CommonSupport.m
+%
+% km_CommonSupport calculates the common support between two sets of points.
+%
+% Inputs:
+%   C - Matrix of points representing set C, where each column represents a point in 2D space.
+%   D - Matrix of points representing set D, where each column represents a point in 2D space.
+%
+% Outputs:
+%   A - Matrix of points representing the common support between sets C and D, where each column represents a point in 2D space.
+%   B - Matrix of points representing the common support between sets C and D, where each column represents a point in 2D space.
+%   flag - Flag indicating whether there is a common support (1) or not (0).
+%
+% Example:
+%   C = [1 2 3; 4 5 6];
+%   D = [2 3 4; 5 6 7];
+%   [A, B, flag] = km_CommonSupport(C, D);
+%
+%   A =
+%      2     3
+%      5     6
+%
+%   B =
+%      3     4
+%      6     7
+%
+%   flag =
+%      1
+%
+% Author: Kristen Meiburger
+
 function [A,B,flag] = km_CommonSupport(C,D)
 
 C=TurnRow(C);

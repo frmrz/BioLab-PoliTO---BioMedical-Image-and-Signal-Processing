@@ -1,3 +1,39 @@
+%
+% getLIMAfromMask - Extracts LIMA and MA profiles from a binary mask.
+%
+% Syntax:
+%   [LI_AUTO, MA_AUTO] = getLIMAfromMask(out)
+%
+% Inputs:
+%   out - Binary mask image.
+%
+% Outputs:
+%   LI_AUTO - LIMA profile coordinates.
+%   MA_AUTO - MA profile coordinates.
+%
+% Description:
+%   This function takes a binary mask image and extracts the LI-MA  and MA  profiles from it. The
+%   function first identifies the boundary pixels of the mask using
+%   bwperim. Then, it separates the boundary pixels into two distinct
+%   profiles by removing the first and last points of each column. The
+%   profiles are then merged and sorted. The function also cuts the
+%   extremities of the profiles to avoid border effects and smooths the
+%   profiles using movmean. Finally, the function corrects the profile
+%   coordinates for the selection made by bwperim.
+%
+% Example:
+%   out = imread('mask.png');
+%   [LI_AUTO, MA_AUTO] = getLIMAfromMask(out);
+%
+% References:
+%   None.
+%
+% See also:
+%   bwperim, movmean
+%
+% Author:
+%   Francesco Marzola
+
 function [LI_AUTO,MA_AUTO]=getLIMAfromMask(out)
     bwper = bwperim(out);
     [rows,cols,~] = find(bwper==1);

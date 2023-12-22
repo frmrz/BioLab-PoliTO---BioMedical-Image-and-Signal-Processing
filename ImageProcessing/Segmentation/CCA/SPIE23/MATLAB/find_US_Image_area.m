@@ -1,3 +1,23 @@
+%
+% find_US_Image_area: Function to find the image area in an ultrasound image.
+%
+% Syntax:
+%   [Bounds, Img_cropped, row, col] = find_US_Image_area(Img)
+%
+% Input Arguments:
+%   - Img: The input ultrasound image.
+%
+% Output Arguments:
+%   - Bounds: The boundaries of the image area [first_row, last_row, first_col, last_col].
+%   - Img_cropped: The cropped image within the boundaries.
+%   - row: The number of rows in the input image.
+%   - col: The number of columns in the input image.
+%
+% Example:
+%   Img = imread('ultrasound_image.png');
+%   [Bounds, Img_cropped, row, col] = find_US_Image_area(Img);
+%
+% See also: entropy, imopen, strel, otsuthresh, accumarray, diff
 
 function [Bounds,Img_cropped,row,col]=find_US_Image_area(Img)
 
@@ -115,6 +135,20 @@ function [Bounds,Img_cropped,row,col]=find_US_Image_area(Img)
 %         pause(0.001)
 
 end
+
+%
+% find_max_connected_entro_cols finds the first and last column indices of the largest connected area in an image based on the entropy of each column.
+%
+% Inputs:
+%   - Img: The input image.
+%   - show: A flag indicating whether to show the results or not (optional, default is 0).
+%
+% Outputs:
+%   - first_col: The index of the first column of the largest connected area.
+%   - last_col: The index of the last column of the largest connected area.
+%
+% Example:
+%   [first_col, last_col] = find_max_connected_entro_cols(Img, 1);
 
 function [first_col,last_col] = find_max_connected_entro_cols(Img,show)
         
