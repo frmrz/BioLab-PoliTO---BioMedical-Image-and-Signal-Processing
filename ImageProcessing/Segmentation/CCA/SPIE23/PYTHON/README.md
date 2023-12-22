@@ -10,5 +10,16 @@ This directory contains the Python and MATLAB scripts used for the SPIE2023 conf
 - myClasses.py - support classes for train.py and inference.py
 - extractPatch.py - Patch extraction using MONAI to be used during training
 
-## File Descriptions PYTHON
+## File Descriptions MATLAB
+- consensusGT.m - creates consensus profiles for the data in the multicenter test set
+- cropAndResizeUSimage.m  - performs the first cropping step of the paper
+- evaluateProfileMetricsCommonSupport.m  - calculates the metrics using the manual and computerized LI and MA profiles
+- find_US_Image_area.m - get the ROI of the image data inside a US image with auxiliary info
+- fm_autocrop.m - automatic cropping of ultrasound images in DICOM3 format.
+- get_dataset_summary.m - get mean and std of matrics stored in structures
+- getLIMAfromMask.m - Extracts LIMA and MA profiles from a binary mask.
+
+- makeHybridGT.m - creates the HybridGT starting from the 2 manual and 2 computerized profile
+- plotProfiles.m - simple scripts for plotting profiles on the image
+- profile2Mask.m - creates the IM complex mask starting from LI and MA profiles
 
