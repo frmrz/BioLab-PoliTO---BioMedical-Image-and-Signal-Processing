@@ -1,3 +1,23 @@
+%
+% LI_MA_interp - Interpolates LI and MA profiles
+%
+% Syntax:  [LI, MA] = LI_MA_interp(li, ma)
+%
+% Inputs:
+%    li - LI profile vector
+%    ma - MA profile vector
+%
+% Outputs:
+%    LI - Interpolated LI profile
+%    MA - Interpolated MA profile
+%
+% Example:
+%    li = [1 2; 2 4; 3 6];
+%    ma = [1 3; 2 6; 3 9];
+%    [LI, MA] = LI_MA_interp(li, ma);
+%
+% Author: Francesco
+
 function [LI,MA]= LI_MA_interp(li,ma)%,saveoption, filenames, directory)
 
 % this function requires 2 vectors with li and ma profiles to be interpolated
