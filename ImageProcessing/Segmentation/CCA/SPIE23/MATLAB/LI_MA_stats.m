@@ -1,3 +1,32 @@
+% LI_MA_stats calculates various statistics for LI and MA tracing precision assesment.
+%
+% Input:
+%   - LI_GT: Ground truth profile for the LI (Lumen Intima) boundary
+%   - MA_GT: Ground truth profile for the MA (Media Adventitia) boundary
+%   - LI_AUTO: Automatically segmented profile for the LI region
+%   - MA_AUTO: Automatically segmented profile for the MA region
+%   - CF: Conversion factor from pixels to millimeters
+%   - filename: Name of the file being processed
+%   - mode: Mode of operation ('mm' or 'pxl')
+%
+% Output:
+%   - ImtStat: Structure containing the calculated statistics
+%
+% Usage:
+%   ImtStat = LI_MA_stats(LI_GT, MA_GT, LI_AUTO, MA_AUTO, CF, filename, mode)
+%
+% Example:
+%   LI_GT = imread('LI_GT.png');
+%   MA_GT = imread('MA_GT.png');
+%   LI_AUTO = imread('LI_AUTO.png');
+%   MA_AUTO = imread('MA_AUTO.png');
+%   CF = 0.1;
+%   filename = 'image001';
+%   mode = 'mm';
+%   ImtStat = LI_MA_stats(LI_GT, MA_GT, LI_AUTO, MA_AUTO, CF, filename, mode);
+%
+% Author: Francesco Marzola
+
 function [ImtStat]= LI_MA_stats(LI_GT,MA_GT,LI_AUTO,MA_AUTO,CF,filename,mode)
 
     % this function requires the profiles in common support

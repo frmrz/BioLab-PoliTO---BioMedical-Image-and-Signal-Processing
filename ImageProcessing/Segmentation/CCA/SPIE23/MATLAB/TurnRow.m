@@ -1,8 +1,24 @@
-function X = TurnRow(x)
+
+% TurnRow - Converts the input vector x into a row vector X.
 %
-% This routine simply turns the input vector x into a row vector X.
-% If x is in column format, it is transposed and assigned to X.
-% If x is in row format, nothing is done.
+% Syntax: X = TurnRow(x)
+%
+% Inputs:
+%   x - Input vector (column or row format)
+%
+% Outputs:
+%   X - Row vector
+%
+% Example:
+%   x = [1; 2; 3]; % column format
+%   X = TurnRow(x); % X = [1 2 3]
+%
+%   x = [1 2 3]; % row format
+%   X = TurnRow(x); % X = [1 2 3]
+%
+
+function X = TurnRow(x)
+
 
 S = size(x);
 if S(1) < S(2) && S(1) > 1

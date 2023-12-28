@@ -1,4 +1,3 @@
-% FILEPATH: /media/francesco/DEV001/CENTRAL_PROJECTS_REPOSITORY/BioLab-PoliTO---BioMedical-Image-and-Signal-Processing/ImageProcessing/Segmentation/CCA/MATLAB/profile2Mask.m
 % This script converts profiles into masks for a set of images.
 % It reads profiles from a directory, loads corresponding images, and generates masks based on the profiles.
 % The masks are then saved in a specified directory.

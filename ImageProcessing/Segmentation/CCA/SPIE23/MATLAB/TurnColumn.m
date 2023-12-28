@@ -1,8 +1,21 @@
-function X = TurnColumn(x)
+
+% TurnColumn - Converts a vector into a column vector
 %
-% This routine simply turns the input vector x into a row vector X.
-% If x is in column format, it is transposed and assigned to X.
-% If x is in row format, nothing is done.
+%   X = TurnColumn(x) converts the input vector x into a column vector X.
+%   If x is already in column format, nothing is done. If x is in row
+%   format, it is transposed and assigned to X.
+%
+%   Inputs:
+%       x - Input vector
+%
+%   Outputs:
+%       X - Column vector
+%
+%   Example:
+%       x = [1; 2; 3];
+%       X = TurnColumn(x);
+
+function X = TurnColumn(x)
 
 S = size(x);
 if S(1) > S(2) && S(1) > 1

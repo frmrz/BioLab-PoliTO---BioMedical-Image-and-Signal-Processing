@@ -1,4 +1,3 @@
-% FILEPATH: /media/francesco/DEV001/CENTRAL_PROJECTS_REPOSITORY/BioLab-PoliTO---BioMedical-Image-and-Signal-Processing/ImageProcessing/Segmentation/CCA/SPIE23/MATLAB/km_CommonSupport.m
 %
 % km_CommonSupport calculates the common support between two sets of points.
 %
@@ -27,7 +26,7 @@
 %   flag =
 %      1
 %
-% Author: Kristen Meiburger
+% Author: Kristen Meiburger, Francesco Marzola
 
 function [A,B,flag] = km_CommonSupport(C,D)
 

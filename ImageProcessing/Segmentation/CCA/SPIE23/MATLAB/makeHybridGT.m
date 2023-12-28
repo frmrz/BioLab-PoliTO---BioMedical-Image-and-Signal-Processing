@@ -1,5 +1,3 @@
-% FILEPATH: /media/francesco/DEV001/CENTRAL_PROJECTS_REPOSITORY/BioLab-PoliTO---BioMedical-Image-and-Signal-Processing/ImageProcessing/Segmentation/CCA/SPIE23/MATLAB/makeHybridGT.m
-
 % This script is used to create a hybrid ground truth (GT) for image segmentation.
 % It takes multiple input images and corresponding masks, and generates a hybrid GT mask
 % by combining the information from different masks based on certain conditions.
@@ -18,8 +16,8 @@
 
 % This script is part of a larger project for biomedical image and signal processing.
 
-% Author: [Author Name]
-% Date: [Date]
+% Author: Francesco Marzola
+
 close all
 clear
 

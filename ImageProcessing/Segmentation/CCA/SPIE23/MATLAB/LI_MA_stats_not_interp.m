@@ -1,3 +1,39 @@
+
+% LI_MA_stats_not_interp calculates various statistics for LI and MA tracing precision assesment when profile are not interpolated
+%
+% Input:
+%   LI_GT: Ground truth LI (Luminance Index) data
+%   MA_GT: Ground truth MA (Microaneurysm) data
+%   LI_AUTO: Automatically generated LI data
+%   MA_AUTO: Automatically generated MA data
+%   CF: Conversion factor for unit conversion (mm or pxl)
+%   filename: Name of the file being processed
+%   mode: Mode of operation ('mm' or 'pxl')
+%
+% Output:
+%   ImtStat: Structure containing the calculated statistics
+%       - filename: Name of the file being processed
+%       - CF: Conversion factor for unit conversion (mm or pxl)
+%       - PDMauto: PolyDistMethod result for the automatically generated data
+%       - PDMgt: PolyDistMethod result for the ground truth data
+%       - BiasPDM: Bias in PolyDistMethod result (PDMauto - PDMgt)
+%       - AbsBiasPDM: Absolute bias in PolyDistMethod result (|PDMauto - PDMgt|)
+%       - EDauto: Mean Euclidean distance for the automatically generated data
+%       - EDgt: Mean Euclidean distance for the ground truth data
+%       - BiasED: Bias in mean Euclidean distance (EDauto - EDgt)
+%       - AbsBiasED: Absolute bias in mean Euclidean distance (|EDauto - EDgt|)
+%
+% Note: This function assumes that the profiles have a common support.
+%
+% Example usage:
+%   LI_GT = [1, 2, 3];
+%   MA_GT = [4, 5, 6];
+%   LI_AUTO = [7, 8, 9];
+%   MA_AUTO = [10, 11, 12];
+%   CF = 0.5;
+%   filename = 'image.jpg';
+%   mode = 'mm';
+%   ImtStat = LI_MA_stats_not_interp(LI_GT, MA_GT, LI_AUTO, MA_AUTO, CF, filename, mode);
 function [ImtStat]= LI_MA_stats_not_interp(LI_GT,MA_GT,LI_AUTO,MA_AUTO,CF,filename,mode)
 
     % this function requires the profiles in common support
